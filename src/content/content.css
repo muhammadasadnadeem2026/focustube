@@ -1,0 +1,191 @@
+/*
+ * FocusTube — static in-page styles. The hide rules themselves are generated
+ * from selectors.js at runtime; this file styles what FocusTube adds.
+ * Colors follow YouTube's own theme variables so light and dark both work.
+ */
+
+/* ---- Focus filter verdicts on video cards ------------------------------ */
+html.ft-on [data-ft="hide"] {
+  display: none !important;
+}
+html.ft-on [data-ft="dim"] {
+  opacity: 0.18 !important;
+  filter: grayscale(1);
+  transition: opacity 0.15s ease;
+}
+html.ft-on [data-ft="dim"]:hover {
+  opacity: 0.6 !important;
+}
+
+/* ---- Grayscale thumbnails ---------------------------------------------- */
+html.ft-on.ft-grayscale ytd-thumbnail img,
+html.ft-on.ft-grayscale yt-thumbnail-view-model img,
+html.ft-on.ft-grayscale ytm-shorts-lockup-view-model img,
+html.ft-on.ft-grayscale ytd-moving-thumbnail-renderer {
+  filter: grayscale(1) !important;
+}
+
+/* ---- Shared bits --------------------------------------------------------
+ * YouTube marks its dark theme with html[dark]; its CSS variable names change
+ * too often to rely on, so FocusTube keeps its own light/dark tokens. */
+.ft-home-panel,
+.ft-guard {
+  --ft-accent: #5b6cf0;
+  --ft-accent-ink: #ffffff;
+  --ft-text: #0f0f0f;
+  --ft-muted: #606060;
+  --ft-line: rgba(0, 0, 0, 0.12);
+  --ft-chip: rgba(0, 0, 0, 0.05);
+  font-family: "Roboto", "Arial", sans-serif;
+  color: var(--ft-text);
+}
+html[dark] .ft-home-panel,
+.ft-guard {
+  --ft-accent: #7c8cff;
+  --ft-accent-ink: #0b0d12;
+  --ft-text: #f1f1f1;
+  --ft-muted: #aaaaaa;
+  --ft-line: rgba(255, 255, 255, 0.14);
+  --ft-chip: rgba(255, 255, 255, 0.08);
+}
+
+.ft-btn {
+  appearance: none;
+  border: 1px solid var(--ft-line);
+  background: var(--ft-chip);
+  color: var(--ft-text);
+  font: 500 14px/1 "Roboto", "Arial", sans-serif;
+  padding: 11px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.ft-btn:hover { filter: brightness(1.15); }
+.ft-btn:focus-visible { outline: 2px solid var(--ft-accent); outline-offset: 2px; }
+.ft-btn-primary {
+  background: var(--ft-accent);
+  border-color: transparent;
+  color: var(--ft-accent-ink);
+}
+
+.ft-home-eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ft-accent);
+  margin-bottom: 10px;
+}
+
+/* ---- Home panel (shown instead of the recommendation grid) ------------- */
+.ft-home-panel { display: none; }
+html.ft-on.ft-hideHomeFeed .ft-home-panel {
+  display: block;
+  box-sizing: border-box;
+  width: 680px;
+  max-width: calc(100vw - 48px);
+  margin: 72px auto 48px;
+  padding: 0 8px;
+}
+.ft-home-title {
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+.ft-home-sub {
+  font-size: 15px;
+  color: var(--ft-muted);
+  margin: 0 0 24px;
+}
+.ft-home-search {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.ft-home-input {
+  flex: 1;
+  min-width: 0;
+  font: 16px "Roboto", "Arial", sans-serif;
+  color: var(--ft-text);
+  background: transparent;
+  border: 1px solid var(--ft-line);
+  border-radius: 999px;
+  padding: 12px 18px;
+  outline: none;
+}
+.ft-home-input:focus { border-color: var(--ft-accent); }
+.ft-home-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.ft-chip {
+  font-size: 14px;
+  color: var(--ft-text);
+  background: var(--ft-chip);
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-decoration: none;
+}
+.ft-chip:hover { background: var(--ft-line); }
+.ft-home-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-top: 1px solid var(--ft-line);
+  padding-top: 18px;
+}
+.ft-link {
+  font-size: 14px;
+  color: var(--ft-muted);
+  text-decoration: none;
+}
+.ft-link:hover { color: var(--ft-text); }
+
+/* ---- Focus guard -------------------------------------------------------- */
+.ft-guard {
+  position: fixed;
+  inset: 0;
+  z-index: 2300;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(8, 9, 12, 0.82);
+  backdrop-filter: blur(14px);
+  --ft-text: #f1f1f1;
+  --ft-muted: #a8acb8;
+  --ft-line: rgba(255, 255, 255, 0.14);
+  --ft-chip: rgba(255, 255, 255, 0.06);
+}
+.ft-guard-card {
+  width: 480px;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: #14161c;
+  border: 1px solid var(--ft-line);
+  border-radius: 16px;
+  padding: 28px;
+}
+.ft-guard-title {
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+.ft-guard-video {
+  font-size: 14px;
+  color: var(--ft-muted);
+  margin: 0 0 24px;
+  overflow-wrap: anywhere;
+}
+.ft-guard-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ft-guard-hint {
+  font-size: 12px;
+  color: var(--ft-muted);
+  margin: 20px 0 0;
+}

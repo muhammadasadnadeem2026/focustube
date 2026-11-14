@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FocusTube Settings</title>
+  <link rel="stylesheet" href="../ui/theme.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="side">
+      <div class="brand">
+        <img src="../../icons/icon48.png" width="28" height="28" alt="">
+        <span>FocusTube</span>
+      </div>
+      <nav id="nav">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#distractions">Distractions</a>
+        <a href="#focus">Focus Mode</a>
+        <a href="#lists">Allow &amp; block</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#privacy">Privacy &amp; data</a>
+      </nav>
+      <label class="master">
+        <span>FocusTube enabled</span>
+        <span class="switch"><input type="checkbox" data-key="enabled"><span></span></span>
+      </label>
+    </aside>
+
+    <main>
+      <!-- Dashboard ------------------------------------------------------->
+      <section id="dashboard" class="page">
+        <header class="page-head">
+          <h1>Dashboard</h1>
+          <p class="muted" id="modeLine"></p>
+        </header>
+
+        <h2 class="group-title">Today</h2>
+        <div class="stat-grid" id="statsToday"></div>
+
+        <h2 class="group-title">All time</h2>
+        <div class="stat-grid" id="statsTotal"></div>
+
+        <p class="faint note" id="estimateNote"></p>
+      </section>
+
+      <!-- Distractions ---------------------------------------------------->
+      <section id="distractions" class="page">
+        <header class="page-head">
+          <h1>Distractions</h1>
+          <p class="muted">Hidden in both Normal and Focus Mode. Everything else on YouTube keeps working.</p>
+        </header>
+
+        <div class="panel">
+          <div class="setting">
+            <div><h3>Hide Shorts</h3><p>Shelves, cards, the Shorts tab and menu entries on every page.</p></div>
+            <label class="switch"><input type="checkbox" data-key="hideShorts"><span></span></label>
+          </div>
+          <div class="setting">
+            <div><h3>When a Shorts link is opened</h3><p>Applies when Hide Shorts is on.</p></div>
+            <select class="input narrow" data-key="shortsRedirect">
+              <option value="watch">Open it as a normal video</option>
+              <option value="home">Block it (go to Home)</option>
+              <option value="off">Allow the Shorts player</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="setting">
+            <div><h3>Hide Home recommendations</h3><p>Replaces the Home feed with a search box and your topics.</p></div>
+            <label class="switch"><input type="checkbox" data-key="hideHomeFeed"><span></span></label>
+          </div>
+          <div class="setting">
+            <div><h3>Hide suggested videos</h3><p>The "Up next" column beside the video you're watching.</p></div>
+            <label class="switch"><input type="checkbox" data-key="hideSuggested"><span></span></label>
+          </div>
+          <div class="setting">
+            <div><h3>Hide Explore &amp; Trending</h3><p>Removes the sections from the menu and redirects the pages to Home.</p></div>
+            <label class="switch"><input type="checkbox" data-key="hideExplore"><span></span></label>
+          </div>
+          <div class="setting">
+            <div><h3>Hide injected shelves</h3><p>"Breaking news", "People also watched" and similar rows in feeds and search.</p></div>
+            <label class="switch"><input type="checkbox" data-key="hideShelves"><span></span></label>
+          </div>
+          <div class="setting">
+            <div><h3>Hide Mixes</h3><p>Endless auto-generated playlists.</p></div>
+            <label class="switch"><input type="checkbox" data-key="hideMixes"><span></span></label>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="setting">
+            <div><h3>Turn off autoplay</h3><p>Switches YouTube's autoplay toggle off whenever it is on.</p></div>
+            <label class="switch"><input type="checkbox" data-key="disableAutoplay"><span></span></label>
+          </div>
+          <div class="setting">
+            <div><h3>Hide end screens</h3><p>End-screen cards, the video wall and pause overlays inside the player.</p></div>
+            <label class="switch"><input type="checkbox" data-key="hideEndScreen"><span></span></label>
+          </div>
+          <div class="setting">
+            <div><h3>Hide sponsored blocks</h3><p>Promoted cards, masthead banners and merch shelves. (Does not block video ads.)</p></div>
+            <label class="switch"><input type="checkbox" data-key="hidePromos"><span></span></label>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="setting">
+            <div><h3>Hide comments</h3></div>
+            <label class="switch"><input type="checkbox" data-key="hideComments"><span></span></label>
+          </div>
+          <div class="setting">
+            <div><h3>Hide notifications bell</h3></div>
+            <label class="switch"><input type="checkbox" data-key="hideNotifications"><span></span></label>
+          </div>
+          <div class="setting">
+            <div><h3>Hide live chat</h3></div>
+            <label class="switch"><input type="checkbox" data-key="hideLiveChat"><span></span></label>
+          </div>
+          <div class="setting">
+            <div><h3>Grayscale thumbnails</h3><p>Makes thumbnails less eye-catching.</p></div>
+            <label class="switch"><input type="checkbox" data-key="grayscaleThumbs"><span></span></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Focus Mode ------------------------------------------------------>
+      <section id="focus" class="page">
+        <header class="page-head">
+          <h1>Focus Mode</h1>
+          <p class="muted">Show only videos that match your topics, allowed keywords or allowed channels.</p>
+        </header>
+
+        <div class="panel">
+          <div class="setting">
+            <div><h3>Mode</h3><p id="focusHint">Shortcut: Alt+Shift+F</p></div>
+            <div class="segmented" role="group" aria-label="Mode">
+              <button type="button" data-mode="normal">Normal</button>
+              <button type="button" data-mode="focus">Focus</button>
+            </div>
+          </div>
+          <div class="setting">
+            <div><h3>Off-topic videos in feeds</h3></div>
+            <select class="input narrow" data-key="focusAction">
+              <option value="hide">Hide them</option>
+              <option value="dim">Dim them</option>
+            </select>
+          </div>
+          <div class="setting">
+            <div><h3>Apply the filter to</h3><p>Includes search results, so searching for something off-topic doesn't get around Focus Mode. Untick Search to leave results unfiltered.</p></div>
+            <div class="checks">
+              <label><input type="checkbox" data-key="filterHome"> Home</label>
+              <label><input type="checkbox" data-key="filterSuggested"> Suggested</label>
+              <label><input type="checkbox" data-key="filterSubscriptions"> Subscriptions</label>
+              <label><input type="checkbox" data-key="filterSearch"> Search</label>
+            </div>
+          </div>
+          <div class="setting">
+            <div><h3>Guard off-topic videos and blocked searches</h3><p>Pause and ask before playing an off-topic or blocked video, and before showing results for a search that matches your blocklist. Videos opened from a channel or playlist play normally.</p></div>
+            <label class="switch"><input type="checkbox" data-key="guardWatchPage"><span></span></label>
+          </div>
+        </div>
+
+        <div class="section-row">
+          <h2 class="group-title">Topics</h2>
+          <button class="btn" id="addTopic" type="button">+ Add topic</button>
+        </div>
+        <p class="faint note">A video matches a topic when its title or channel contains the topic name or any of its keywords.</p>
+        <div id="topicList" class="topic-list"></div>
+      </section>
+
+      <!-- Lists ----------------------------------------------------------->
+      <section id="lists" class="page">
+        <header class="page-head">
+          <h1>Allow &amp; block</h1>
+          <p class="muted">Blocklists apply in both modes. Allowlists add to your topics in Focus Mode.</p>
+        </header>
+
+        <div class="list-grid">
+          <div class="panel list">
+            <h3>Allowed keywords</h3>
+            <p>Always shown in Focus Mode, e.g. Python, FastAPI.</p>
+            <div data-tags="allowedKeywords" data-placeholder="Add keyword and press Enter"></div>
+          </div>
+          <div class="panel list">
+            <h3>Allowed channels</h3>
+            <p>Channel name or @handle.</p>
+            <div data-tags="allowedChannels" data-placeholder="e.g. 3Blue1Brown or @veritasium"></div>
+          </div>
+          <div class="panel list">
+            <h3>Blocked keywords</h3>
+            <p>Videos with these words in the title or channel are hidden.</p>
+            <div data-tags="blockedKeywords" data-placeholder="e.g. prank, celebrity"></div>
+          </div>
+          <div class="panel list">
+            <h3>Blocked channels</h3>
+            <p>Tip: use "Block this channel" in the popup while watching.</p>
+            <div data-tags="blockedChannels" data-placeholder="Channel name or @handle"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Schedule -------------------------------------------------------->
+      <section id="schedule" class="page">
+        <header class="page-head">
+          <h1>Schedule</h1>
+          <p class="muted">Turn Focus Mode on automatically. Switching to Normal during a window pauses the schedule until that window ends.</p>
+        </header>
+        <div class="panel">
+          <div class="setting">
+            <div><h3>Scheduled Focus Mode</h3><p id="schedSummary"></p></div>
+            <label class="switch"><input type="checkbox" id="schedEnabled"><span></span></label>
+          </div>
+          <div class="setting">
+            <div><h3>Hours</h3><p>Windows past midnight (e.g. 22:00–02:00) are supported.</p></div>
+            <div class="times">
+              <input class="input" type="time" id="schedStart" aria-label="Start time">
+              <span class="faint">to</span>
+              <input class="input" type="time" id="schedEnd" aria-label="End time">
+            </div>
+          </div>
+          <div class="setting">
+            <div><h3>Days</h3></div>
+            <div class="days wide" id="schedDays"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Privacy --------------------------------------------------------->
+      <section id="privacy" class="page">
+        <header class="page-head">
+          <h1>Privacy &amp; data</h1>
+        </header>
+        <div class="panel prose">
+          <ul>
+            <li>Settings and statistics are stored only in this browser, with <code>chrome.storage.local</code>.</li>
+            <li>FocusTube does not record your browsing or watch history. Statistics are counts only.</li>
+            <li>FocusTube makes no network requests and sends nothing to any server.</li>
+            <li>No account is needed. The only site it runs on is youtube.com.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <div class="setting">
+            <div><h3>Export settings</h3><p>Download your settings as a JSON file.</p></div>
+            <button class="btn" id="exportBtn" type="button">Export</button>
+          </div>
+          <div class="setting">
+            <div><h3>Import settings</h3><p>Load a previously exported file.</p></div>
+            <label class="btn">Import<input type="file" id="importFile" accept="application/json,.json" hidden></label>
+          </div>
+          <div class="setting">
+            <div><h3>Reset statistics</h3></div>
+            <button class="btn btn-danger" id="resetStats" type="button">Reset</button>
+          </div>
+          <div class="setting">
+            <div><h3>Reset all settings</h3><p>Restores the default topics, lists and toggles.</p></div>
+            <button class="btn btn-danger" id="resetSettings" type="button">Reset</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../shared/defaults.js"></script>
+  <script src="../shared/schedule.js"></script>
+  <script src="../shared/storage.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

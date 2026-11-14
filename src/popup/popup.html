@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FocusTube</title>
+  <link rel="stylesheet" href="../ui/theme.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <img src="../../icons/icon32.png" width="22" height="22" alt="">
+    <h1>FocusTube</h1>
+    <a class="head-link" href="../options/options.html" target="_blank">Settings</a>
+    <label class="switch" title="Enable FocusTube">
+      <input type="checkbox" data-key="enabled" aria-label="Enable FocusTube">
+      <span></span>
+    </label>
+  </header>
+
+  <main>
+    <section class="card mode-card">
+      <div class="segmented" role="group" aria-label="Mode">
+        <button type="button" data-mode="normal" aria-pressed="true">Normal</button>
+        <button type="button" data-mode="focus" aria-pressed="false">Focus</button>
+      </div>
+      <p class="status" id="status"></p>
+    </section>
+
+    <section class="card rows">
+      <label class="row">
+        <span>Hide Shorts</span>
+        <span class="switch"><input type="checkbox" data-key="hideShorts"><span></span></span>
+      </label>
+      <label class="row">
+        <span>Hide recommendations</span>
+        <span class="switch"><input type="checkbox" id="hideRecs"><span></span></span>
+      </label>
+      <div class="row">
+        <span class="block-label" id="blockLabel">Block this channel</span>
+        <button class="btn btn-sm" id="blockThis" disabled>Block</button>
+      </div>
+      <form class="row add" id="blockForm">
+        <input class="input" id="blockInput" placeholder="Block a keyword, e.g. prank" autocomplete="off" aria-label="Block a keyword">
+        <button class="btn btn-sm" type="submit">Add</button>
+      </form>
+      <p class="faint small"><span id="blockSummary"></span> · <a href="../options/options.html#lists" target="_blank">Manage lists</a></p>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Allowed topics</h2>
+        <a href="../options/options.html#focus" target="_blank">Edit</a>
+      </div>
+      <div class="chips" id="topics"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head flush">
+        <h2>Schedule</h2>
+        <span class="sched-summary" id="schedSummary"></span>
+        <button class="btn-link" type="button" id="schedToggle" aria-expanded="false" aria-controls="schedBody">Edit</button>
+        <label class="switch" title="Enable schedule">
+          <input type="checkbox" id="schedEnabled" aria-label="Enable schedule">
+          <span></span>
+        </label>
+      </div>
+      <div class="sched" id="schedBody" hidden>
+        <div class="times">
+          <input class="input" type="time" id="schedStart" aria-label="Start time">
+          <span class="faint">to</span>
+          <input class="input" type="time" id="schedEnd" aria-label="End time">
+        </div>
+        <div class="days" id="schedDays"></div>
+      </div>
+    </section>
+
+    <a class="stats" href="../options/options.html#dashboard" target="_blank" title="Open dashboard">
+      <div><strong id="stShorts">0</strong><span>Shorts today</span></div>
+      <div><strong id="stVideos">0</strong><span>Videos today</span></div>
+      <div><strong id="stSaved">0m</strong><span>Time saved ›</span></div>
+    </a>
+  </main>
+
+  <script src="../shared/defaults.js"></script>
+  <script src="../shared/schedule.js"></script>
+  <script src="../shared/storage.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "focustube",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FocusTube Chrome extension (no build step; load the folder unpacked).",
+  "scripts": {
+    "test": "node --test"
+  }
+}
